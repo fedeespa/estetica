@@ -16,3 +16,9 @@ class Usuario(models.Model):
     nombre=models.CharField(max_length=50)
     def __str__(self) -> str:
         return f"Bienvenido: {self.dni} {self.contra}"
+
+class Pofesional(models.Model):
+    matricula=models.CharField(primary_key=True)
+    especialidad=models.CharField()
+    def __str__(self):
+        return f"{self.matricula} {self.especialidad}"
