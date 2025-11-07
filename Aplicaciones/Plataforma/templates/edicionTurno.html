@@ -1,0 +1,36 @@
+{%extends "./base.html" %}
+{% block title %}Gestion Turno{% endblock %}
+{%block body%}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2>Gestion de Turnos</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarTurno/" method="POST">{%csrf_token%}
+                    <div class="form-group">
+                        <input type="text" id="codigo" name="codigo" value="{{turno.codigo}}" class="form-control" placeholder="Codigo"  required readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="dni" name="dni" value="{{turno.dni}}" class="form-control" placeholder="Dni" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="descripcion" name="descripcion" value="{{turno.descripcion}}" class="form-control" placeholder="Descripcion" required>
+                    </div>    
+                    <div class="form-group">
+                        <input type="number" id="precio" name="precio" value="{{turno.precio}}" class="form-control" placeholder="Precio" required>
+                    </div>    
+                    <div class="form-group">
+                        <input type="date" id="fecha" name="fecha" value="{{turno.fecha}}" class="form-control" placeholder="Fecha" required>
+                    </div>
+                               
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Modificar Turno</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    {%endblock%}    
+
