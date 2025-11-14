@@ -15,13 +15,13 @@ def registrarTurno(request):
     fecha=request.POST['fecha']
     turno=Turno.objects.create(codigo=codigo,dni=dni,descripcion=descripcion,precio=precio,fecha=fecha)
     turnoslistados=Turno.objects.filter(dni=dni)
-    return render(request,"gestionTurnos.html",{"turnos":turnoslistados})
+    return render(request,"gestionTurnos.html",{"turnos":turnoslistados,"dni":dni})
 def borrarTurno(request,codigo):
     turno=Turno.objects.get(codigo=codigo)
     dni=turno.dni
     turno.delete()
     turnoslistados=Turno.objects.filter(dni=dni)
-    return render(request,"gestionTurnos.html",{"turnos":turnoslistados})
+    return render(request,"gestionTurnos.html",{"turnos":turnoslistados,"dni":dni})
 def edicionTurno(request,codigo):
     turno=Turno.objects.get(codigo=codigo)
     return render(request,"edicionTurno.html",{'turno':turno})
@@ -38,7 +38,7 @@ def editarTurno(request):
     turno.fecha=fecha
     turno.save()
     turnoslistados=Turno.objects.filter(dni=dni)
-    return render(request,"gestionTurnos.html",{"turnos":turnoslistados})
+    return render(request,"gestionTurnos.html",{"turnos":turnoslistados,"dni":dni})
 def loguearse(request):
     dni=request.POST['dni']
     contra=request.POST['contra']
@@ -46,10 +46,15 @@ def loguearse(request):
         usuario=Usuario.objects.get(dni=dni,contra=contra)
         try:
             turnoslistados=Turno.objects.filter(dni=dni)
-            return render(request,"gestionTurnos.html",{"turnos":turnoslistados})
+            return render(request,"gestionTurnos.html",{"turnos":turnoslistados,"dni":dni})
         except:
             turnoslistados=[]
-            return render(request,"gestionTurnos.html",{"turnos":turnoslistados})
+            return render(request,"gestionTurnos.html",{"turnos":turnoslistados,"dni":dni})
     except:
         return redirect('/')
 
+def contacto(request,dni):
+    return render(request,"contacto.html",{"dni":dni})
+def home(request,dni):
+    turnoslistados=Turno.objects.filter(dni=dni)
+    return render(request,"gestionTurnos.html",{"turnos":turnoslistados,"dni":dni})

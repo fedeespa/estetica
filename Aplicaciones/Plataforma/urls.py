@@ -6,8 +6,8 @@ urlpatterns=[
     path('edicionTurno/<codigo>',views.edicionTurno),
     path('borrarTurno/<codigo>',views.borrarTurno),
     path('editarTurno/',views.editarTurno),
-    path('loguearse/',views.loguearse)
-    
-
+    path('loguearse/',views.loguearse),
+    path('contacto/<dni>',views.contacto),
+    path('estetica/<dni>',views.home),
 ]
 
