@@ -58,3 +58,5 @@ def contacto(request,dni):
 def home(request,dni):
     turnoslistados=Turno.objects.filter(dni=dni)
     return render(request,"gestionTurnos.html",{"turnos":turnoslistados,"dni":dni})
+def registro(request):
+    return render(request,"registro.html")
